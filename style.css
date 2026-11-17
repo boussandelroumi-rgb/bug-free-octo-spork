@@ -1,0 +1,146 @@
+
+body {
+    background-color: #FFF0F5;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #75465B;
+    padding: 20px;
+}
+
+h1 {
+    color: #C45D87;
+    margin-top: 35px;
+}
+
+h2 {
+    color: #A75D7D;
+    margin-top: 35px;
+}
+
+p {
+    color: #9B7183;
+    font-size: 15px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 18px;
+    padding: 18px 8px;
+    box-shadow: 0 3px 10px #E8B7CB;
+}
+
+.card h3 {
+    color: #C45D87;
+    font-size: 17px;
+}
+button {
+    background-color: #E8A1BC;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 14px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+input {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+
+input + button {
+    display: block;
+    margin: 10px auto;
+}
+#habitInput {
+    margin: 5px auto;
+}
+
+#habitList {
+    margin-top: 10px;
+}
+
+#habitInput + button {
+    margin: 5px auto;
+}
+#quoteText {
+    color: #C45D87;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.8;
+    padding: 10px;
+    min-height: 50px;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+.progress-bar {
+    width: 90%;
+    height: 15px;
+    background-color: #FCE1EB;
+    border-radius: 20px;
+    margin: 15px auto;
+    overflow: hidden;
+}
+
+#progressFill {
+    width: 0%;
+    height: 100%;
+    background-color: #E8A1BC;
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+/* Independent Pages */
+
+.page {
+    display: none;
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
+    box-sizing: border-box;
+}
+
+.page.active {
+    display: block;
+}
+
+.container {
+    display: block;
+}
+button {
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+#homePage button {
+    display: block;
+    width: 100%;
+    margin: 12px auto;
+    padding: 14px;
+    border: none;
+    border-radius: 18px;
+    background: #FCE1EB;
+    color: #8D4966;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(200, 120, 150, 0.12);
+}
+
+#homePage button:active {
+    background: #F5C5D8;
+}

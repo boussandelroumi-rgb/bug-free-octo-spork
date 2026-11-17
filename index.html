@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Little World</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>♡ My Little World ♡</h1>
+    <p>A little step every day makes a big difference.</p>
+
+    <h2>My App Test ♡</h2>
+
+  
+<div class="container">
+<div class="card page" id="homePage">
+    <h2 id="welcomeMessage">♡ Welcome to MyLittleWorld ♡</h2>
+    <p>Welcome to your little world of dreams! 🌷</p>
+<p>Every day is a new chance to grow, learn and shine. ✨</p>
+<h3>♡ Explore Your World ♡</h3>
+<p>Choose a space and make today beautiful!</p>
+    <p>Your little space to grow and shine 🌷</p>
+
+    <button onclick="openPage('tasksPage')">🌷 My Tasks</button>
+
+<button onclick="openPage('goalsPage')">🎯 My Goals</button>
+
+<button onclick="openPage('habitsPage')">🌱 My Habits</button>
+
+<button onclick="openPage('journalPage')">📖 My Journal</button>
+
+<button onclick="openPage('moodPage')">🌸 My Mood</button>
+
+<button onclick="openPage('quotePage')">✨ Daily Quote</button>
+
+<button onclick="openPage('progressPage')">📊 My Progress</button>
+
+<button onclick="openPage('streakPage')">🔥 Daily Streak</button>
+</div>
+    <div class="card page" id="tasksPage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Tasks</h3>
+        <p>Organize your day</p>
+        <input type="text" id="taskInput" placeholder="Write a task...">
+        <button onclick="addTask()">Add Task +</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <div class="card page" id="goalsPage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Goals</h3>
+        <p>Dream and achieve</p>
+        <input type="text" id="goalInput" placeholder="Write a goal...">
+        <button onclick="addGoal()">Add Goal +</button>
+        <ul id="goalList"></ul>
+    </div>
+
+  <div class="card page" id="habitsPage">
+      <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+    <h3>♡ My Habits</h3>
+        <p>Build good habits</p>
+        <input type="text" id="habitInput" placeholder="Write a habit...">
+        <button onclick="addHabit()">Add Habit +</button>
+        <ul id="habitList"></ul>
+    </div>
+
+    <div class="card page" id="journalPage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Journal</h3>
+        <p>Write your thoughts...</p>
+        <textarea id="journalInput" placeholder="Dear diary..."></textarea>
+        <button onclick="saveJournal()">Save Entry ♡</button>
+        <div id="journalEntries"></div>
+    </div>
+
+    <div class="card page" id="moodPage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Mood</h3>
+        <p>How are you feeling today?</p>
+        <select id="moodInput">
+            <option value="">Choose your mood</option>
+            <option value="Happy 😊">Happy 😊</option>
+            <option value="Calm 🌿">Calm 🌿</option>
+            <option value="Sad 🌧️">Sad 🌧️</option>
+            <option value="Excited ✨">Excited ✨</option>
+            <option value="Tired 🌙">Tired 🌙</option>
+        </select>
+        <button onclick="saveMood()">Save Mood ♡</button>
+        <div id="moodResult"></div>
+    </div>
+
+    <div class="card page" id="quotePage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Daily Quote</h3>
+        <p id="quoteText">
+            Believe in yourself and your dreams. ♡
+        </p>
+        <button onclick="newQuote()">New Quote ✨</button>
+    </div>
+
+    <div class="card page" id="progressPage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Progress</h3>
+        <p>Your little steps matter!</p>
+
+        <p>♡ My Tasks: <span id="taskCount">0</span></p>
+        <p>♡ My Goals: <span id="goalCount">0</span></p>
+        <p>♡ Completed Goals: <span id="completedGoals">0</span></p>
+        <p>♡ My Habits: <span id="habitCount">0</span></p>
+        <p>♡ Completed Habits: <span id="completedHabits">0</span></p>
+        <p>♡ My Journal: <span id="journalCount">0</span></p>
+        <p>♡ Completed: <span id="completedCount">0</span></p>
+
+        <h3>♡ Overall Progress</h3>
+        <p><span id="progressPercent">0%</span> Completed</p>
+
+        <div class="progress-bar">
+            <div id="progressFill"></div>
+        </div>
+    </div>
+
+    <div class="card page" id="streakPage">
+        <button onclick="openPage('homePage')">
+    ♡ Back to Home
+</button>
+        <h3>♡ My Daily Streak</h3>
+        <p>🔥 Current Streak</p>
+        <h2 id="streakCount">0 Days</h2>
+
+        <p>🏆 Best Streak</p>
+        <h2 id="bestStreak">0 Days</h2>
+
+        <button onclick="recordDailyProgress()">
+            Record Today ♡
+        </button>
+
+        <p id="streakMessage">
+            Every little step counts! 🌷
+        </p>
+    </div>
+
+</div>
+
+  
+    
+</div>
+<script>
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value;
+    
+
+    if (task.trim() === "") return;
+
+    let li = document.createElement("li");
+    let taskText = document
+    .createElement("span");
+    taskText.textContent = task;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+
+    deleteButton.onclick = function(event) {
+        event.stopPropagation();
+        li.remove();
+        updateProgress();
+       saveTasks();
+    };
+
+    li.appendChild(taskText);
+    li.appendChild(deleteButton);
+
+    li.onclick = function() {
+    li.classList.toggle("completed");
+    updateProgress();
+    saveTasks();
+};
+    
+
+    document.getElementById("taskList").appendChild(li);
+    input.value = "";
+     updateProgress();
+     saveTasks();
+}
+function saveTasks() {
+    let tasks = [];
+
+    document.querySelectorAll("#taskList li").forEach(function(li) {
+        let taskText = li.querySelector("span").textContent;
+
+        tasks.push({
+            text: taskText,
+            completed: li.classList.contains("completed")
+        });
+    });
+
+    localStorage.setItem("myTasks", JSON.stringify(tasks));
+}
+
+function addGoal() {
+    let input = document.getElementById("goalInput");
+    let goal = input.value;
+
+    if (goal.trim() === "") return;
+
+    let li = document.createElement("li");
+    let goalText = document.createElement("span");
+    goalText.textContent = goal;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+
+    deleteButton.onclick = function(event) {
+        event.stopPropagation();
+        li.remove();
+        updateProgress();
+        saveGoals();
+    };
+
+    li.appendChild(goalText);
+    li.appendChild(deleteButton);
+
+   li.onclick = function() {
+    li.classList.toggle("completed");
+    updateProgress();
+    saveGoals();
+};
+    
+
+    document.getElementById("goalList").appendChild(li);
+    input.value = "";
+    updateProgress();
+    saveGoals();
+}
+
+
+function addHabit() {
+    let input = document.getElementById("habitInput");
+    let habit = input.value;
+
+    if (habit.trim() === "") return;
+
+    let li = document.createElement("li");
+    let habitText = document.createElement("span");
+    habitText.textContent = habit;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+
+    deleteButton.onclick = function(event) {
+        event.stopPropagation();
+        li.remove();
+        updateProgress();
+        saveHabits();
+    };
+
+    li.appendChild(habitText);
+    li.appendChild(deleteButton);
+
+    li.onclick = function() {
+    li.classList.toggle("completed");
+    updateProgress();
+    saveHabits();
+    };
+
+    document.getElementById("habitList").appendChild(li);
+    input.value = "";
+    updateProgress();
+    saveHabits();
+}
+
+function saveJournal() {
+    let input = document.getElementById("journalInput");
+    let entry = input.value;
+
+    if (entry.trim() === "") return;
+
+    let entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+
+    let newEntry = {
+        text: entry,
+        date: new Date().toLocaleString()
+    };
+
+    entries.push(newEntry);
+
+    localStorage.setItem("journalEntries", JSON.stringify(entries));
+
+    showJournal();
+    updateProgress();
+
+    input.value = "";
+}
+
+function showJournal() {
+    let entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+
+    let journal = document.getElementById("journalEntries");
+    journal.innerHTML = "";
+
+    entries.forEach(function(entry, index) {
+        let paragraph = document.createElement("p");
+        paragraph.textContent = entry.text;
+
+        let date = document.createElement("small");
+        date.textContent = entry.date;
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function() {
+            entries.splice(index, 1);
+            localStorage.setItem("journalEntries", JSON.stringify(entries));
+            showJournal();
+            updateProgress();
+        };
+
+        let editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        editButton.onclick = function() {
+            let newText = prompt("Edit your journal entry:", entry.text);
+
+            if (newText !== null && newText.trim() !== "") {
+                entries[index].text = newText;
+                localStorage.setItem("journalEntries", JSON.stringify(entries));
+                showJournal();
+                updateProgress();
+            }
+        };
+
+        journal.appendChild(date);
+        journal.appendChild(paragraph);
+        journal.appendChild(deleteButton);
+        journal.appendChild(editButton);
+    });
+}
+
+function saveMood() {
+    let mood = document.getElementById("moodInput").value;
+
+    if (mood === "") return;
+
+    let moods = JSON.parse(localStorage.getItem("moodEntries")) || [];
+
+    let newMood = {
+        mood: mood,
+        date: new Date().toLocaleString()
+    };
+
+    moods.push(newMood);
+
+    localStorage.setItem("moodEntries", JSON.stringify(moods));
+
+    showMoods();
+}
+
+function showMoods() {
+    let moods = JSON.parse(localStorage.getItem("moodEntries")) || [];
+
+    let result = document.getElementById("moodResult");
+    result.innerHTML = "";
+
+    moods.forEach(function(item, index) {
+        let paragraph = document.createElement("p");
+        paragraph.textContent = item.mood + " — " + item.date;
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function() {
+            moods.splice(index, 1);
+            localStorage.setItem("moodEntries", JSON.stringify(moods));
+            showMoods();
+        };
+
+        let editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        editButton.onclick = function() {
+            let newMood = prompt("Change your mood:", item.mood);
+
+            if (newMood !== null && newMood.trim() !== "") {
+                moods[index].mood = newMood;
+                localStorage.setItem("moodEntries", JSON.stringify(moods));
+                showMoods();
+            }
+        };
+
+        result.appendChild(paragraph);
+        result.appendChild(deleteButton);
+        result.appendChild(editButton);
+    });
+}
+function newQuote() {
+    let quotes = [
+        "Believe in yourself. ♡",
+        "Small steps lead to big dreams. ✨",
+        "You are capable of amazing things.",
+        "Make today a beautiful day. 🌷",
+        "Your future starts today.",
+        "Enjoy the little things in life. ♡",
+        "Never stop learning and growing."
+    ];
+
+    let randomIndex = Math.floor(Math.random() * quotes.length);
+
+    document.getElementById("quoteText").textContent = quotes[randomIndex];
+}function updateProgress() {
+    let tasks = document.querySelectorAll("#taskList li").length;
+    let goals = document.querySelectorAll("#goalList li").length;
+    let habits = document.querySelectorAll("#habitList li").length;
+
+    document.getElementById("taskCount").textContent = tasks;
+    document.getElementById("goalCount").textContent = goals;
+    document.getElementById("habitCount").textContent = habits;
+
+    let entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+    document.getElementById("journalCount").textContent = entries.length;
+
+    let completedTasks = document.querySelectorAll("#taskList li.completed").length;
+    let completedGoals = document.querySelectorAll("#goalList li.completed").length;
+    let completedHabits = document.querySelectorAll("#habitList li.completed").length;
+
+    document.getElementById("completedCount").textContent = completedTasks;
+    document.getElementById("completedGoals").textContent = completedGoals;
+    document.getElementById("completedHabits").textContent = completedHabits;
+
+    let total = tasks + goals + habits;
+    let completed = completedTasks + completedGoals + completedHabits;
+
+    let percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    document.getElementById("progressPercent").textContent = percent + "%";
+    document.getElementById("progressFill").style.width = percent + "%";
+}
+
+function loadTasks() {
+    let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+
+    tasks.forEach(function(task) {
+        let li = document.createElement("li");
+        let taskText = document.createElement("span");
+
+        taskText.textContent = task.text;
+
+        if (task.completed) {
+            li.classList.add("completed");
+        }
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function(event) {
+            event.stopPropagation();
+            li.remove();
+            saveTasks();
+            updateProgress();
+        };
+
+        li.appendChild(taskText);
+        li.appendChild(deleteButton);
+
+        li.onclick = function() {
+            li.classList.toggle("completed");
+            updateProgress();
+            saveTasks();
+        };
+
+        document.getElementById("taskList").appendChild(li);
+    });
+}
+function recordDailyProgress() {
+    let today = new Date().toLocaleDateString();
+
+    let lastDay = localStorage.getItem("lastStreakDay");
+    let streak = Number(localStorage.getItem("currentStreak")) || 0;
+    let best = Number(localStorage.getItem("bestStreak")) || 0;
+
+    if (lastDay === today) {
+        document.getElementById("streakMessage").textContent =
+            "You already recorded today! ♡";
+        return;
+    }
+
+    if (lastDay !== null) {
+        let yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (lastDay !== yesterday.toLocaleDateString()) {
+            streak = 0;
+        }
+    }
+
+    streak++;
+
+    if (streak > best) {
+        best = streak;
+    }
+
+    localStorage.setItem("lastStreakDay", today);
+    localStorage.setItem("currentStreak", streak);
+    localStorage.setItem("bestStreak", best);
+
+    loadStreak();
+
+    document.getElementById("streakMessage").textContent =
+        "Amazing! Keep going! 🌷";
+}
+
+function loadStreak() {
+    let streak = Number(localStorage.getItem("currentStreak")) || 0;
+    let best = Number(localStorage.getItem("bestStreak")) || 0;
+
+    document.getElementById("streakCount").textContent = streak + " Days";
+    document.getElementById("bestStreak").textContent = best + " Days";
+}
+
+function saveGoals() {
+    let goals = [];
+
+    document.querySelectorAll("#goalList li").forEach(function(li) {
+        goals.push({
+            text: li.querySelector("span").textContent,
+            completed: li.classList.contains("completed")
+        });
+    });
+
+    localStorage.setItem("myGoals", JSON.stringify(goals));
+}
+
+    function saveHabits() {
+    let habits = [];
+
+    document.querySelectorAll("#habitList li").forEach(function(li) {
+        habits.push({
+            text: li.querySelector("span").textContent,
+            completed: li.classList.contains("completed")
+        });
+    });
+
+    localStorage.setItem("myHabits", JSON.stringify(habits));
+}
+
+function loadHabits() {
+    let habits = JSON.parse(localStorage.getItem("myHabits")) || [];
+
+    habits.forEach(function(habit) {
+        let li = document.createElement("li");
+        let habitText = document.createElement("span");
+
+        habitText.textContent = habit.text;
+
+        if (habit.completed) {
+            li.classList.add("completed");
+        }
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function(event) {
+            event.stopPropagation();
+            li.remove();
+            saveHabits();
+            updateProgress();
+        };
+
+        li.appendChild(habitText);
+        li.appendChild(deleteButton);
+
+        li.onclick = function() {
+            li.classList.toggle("completed");
+            updateProgress();
+            saveHabits();
+        };
+
+        document.getElementById("habitList").appendChild(li);
+    });
+}
+function loadGoals() {
+    let goals = JSON.parse(localStorage.getItem("myGoals")) || [];
+
+    goals.forEach(function(goal) {
+        let li = document.createElement("li");
+        let goalText = document.createElement("span");
+
+        goalText.textContent = goal.text;
+
+        if (goal.completed) {
+            li.classList.add("completed");
+        }
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function(event) {
+            event.stopPropagation();
+            li.remove();
+            saveGoals();
+            updateProgress();
+        };
+
+        li.appendChild(goalText);
+        li.appendChild(deleteButton);
+
+        li.onclick = function() {
+            li.classList.toggle("completed");
+            updateProgress();
+            saveGoals();
+        };
+
+        document.getElementById("goalList").appendChild(li);
+    });
+}
+function openPage(pageId) {
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.style.display = "none";
+    });
+
+    document.getElementById(pageId).style.display = "block";
+}
+function updateWelcomeMessage() {
+    let hour = new Date().getHours();
+    let message = "";
+
+    if (hour < 12) {
+        message = "♡ Good Morning! 🌷";
+    } else if (hour < 18) {
+        message = "♡ Good Afternoon! ☀️";
+    } else {
+        message = "♡ Good Evening! 🌙";
+    }
+
+    document.getElementById("welcomeMessage").textContent = message;
+}
+showJournal();
+showMoods();
+loadTasks();
+loadGoals();
+loadHabits();
+updateProgress();
+loadStreak();
+openPage("homePage");
+updateWelcomeMessage();
+</script>
+</body>
+</html>
